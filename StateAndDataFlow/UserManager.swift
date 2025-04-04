@@ -6,3 +6,8 @@
 //
 
 import Foundation
+    // подписываем чтоб обновлять данные
+final class UserManager: ObservableObject {
+    @Published var isLoggedIn = false
+    var name = ""
+}

@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject private var userManager: UserManager // достаем save
+    
+    @State private var name = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Enter your name", text: $name)
+                .multilineTextAlignment(.center) // текст по центру
+            
+            Button(action: login) {
+                Label("OK", systemImage: "checkmark.circle")
+                
+            }
+        }
+    }
+    
+    private func login() {
+        if !name.isEmpty { // если свойство не пустое
+            userManager.name = name // передаем значение
+            userManager.isLoggedIn.toggle() // и меняем свойство на противополож
+        } 
     }
 }
 

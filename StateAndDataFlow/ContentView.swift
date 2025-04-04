@@ -10,16 +10,20 @@ import SwiftUI
 struct ContentView: View {
     // @StateObject чтоб получать обновления от ObservableObject
     @StateObject private var timer = TimeCounter() // иниц экземпляр классом
+    @EnvironmentObject private var userManager: UserManager // доступ к save
     
     var body: some View {
         VStack {
+            Text("Hi, \(userManager.name)")
+                .font(.largeTitle)
+                .padding(.top, 100)
             Text(timer.counter.formatted()) // приводим к стринг
                 .font(.largeTitle) // шрифт
                 .padding(.top, 100) // отступ сверху
             
             Spacer() // поднимаем вверх
             
-            ButtonView(timer: timer) // Binding передаем через $
+            ButtonView(timer: timer)
             
             Spacer()
         }
@@ -28,6 +32,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(UserManager()) // устраняем ошибку
 }
 
 struct ButtonView: View {

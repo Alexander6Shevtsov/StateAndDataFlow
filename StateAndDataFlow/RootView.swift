@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct RootView: View {
+    @StateObject private var userManager = UserManager()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Group { // помещаем в контейнер
+            if userManager.isLoggedIn {
+                ContentView()
+            } else {
+                LoginView()
+            }
+        }
+        .environmentObject(userManager) // и вызываем модификатор save
     }
 }
 
