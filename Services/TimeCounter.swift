@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Combine // обработка асинхронных событий и работай с потоками данных
+import Combine // обработка асинхронных событий и работа с потоками данных
 
-final class TimeCounter: ObservableObject { // отслеживание изменений
-    let objectWillChange = ObservableObjectPublisher()
+@Observable final class TimeCounter {
+    
     var counter = 3 // уведомляем что значение поменялось
     var buttonTitle = "Start"
     
@@ -36,8 +36,6 @@ final class TimeCounter: ObservableObject { // отслеживание изме
             killTimer()
             buttonTitle = "Reset" // меняем кнопку по завершению таймера
         }
-        
-        objectWillChange.send() // отправляет обновленное состояние класса
     }
     
     private func killTimer() {
@@ -52,7 +50,5 @@ final class TimeCounter: ObservableObject { // отслеживание изме
         } else {
             buttonTitle = "Wait..."
         }
-        
-        objectWillChange.send()
     }
 }

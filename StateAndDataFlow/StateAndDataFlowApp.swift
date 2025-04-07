@@ -8,10 +8,16 @@
 import SwiftUI
 
 @main
-struct StateAndDataFlowApp: App {
+struct StateAndDataFlow: App {
+    @StateObject private var userManager = UserManager(
+        user: StorageManager.shared.fetchUser()
+    )
+    
     var body: some Scene {
         WindowGroup {
-            RootView() // делаем стартовым
+            RootView()
+                .environmentObject(userManager)
         }
     }
 }
+

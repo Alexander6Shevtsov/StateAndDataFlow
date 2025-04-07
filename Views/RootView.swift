@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var userManager = UserManager()
+    @EnvironmentObject private var userManager: UserManager
     
     var body: some View {
         Group { // помещаем в контейнер
-            if userManager.isLoggedIn {
+            if userManager.user.isLoggedIn {
                 ContentView()
             } else {
                 LoginView()
@@ -24,4 +24,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
+        .environmentObject(UserManager())
 }
