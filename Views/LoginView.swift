@@ -14,21 +14,21 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            UserNameTF(
+            UserNameTF( // иниц текстовое поле
                 name: $userManager.user.name,
-                nameIsValid: userManager.nameIsValid
+                nameIsValid: userManager.nameIsValid // счетчик имени
             )
             Button(action: registerUser) {
                 Label("OK", systemImage: "checkmark.circle")
             }
-            .disabled(!userManager.nameIsValid)
+            .disabled(!userManager.nameIsValid) // отключение кнопки
         }
         .padding()
     }
     
     private func registerUser() {
         userManager.user.isLoggedIn.toggle()
-        storageManager.save(user: userManager.user)
+        storageManager.save(user: userManager.user) // передаем user
     }
 }
 
@@ -45,7 +45,7 @@ struct UserNameTF: View {
                 Spacer()
                 Text(name.count.formatted())
                     .font(.caption)
-                    .foregroundStyle(nameIsValid ? .green : .red)
+                    .foregroundStyle(nameIsValid ? .green : .red) // цвет счетчика
                     .padding(.vertical)
             }
             .padding(.bottom)

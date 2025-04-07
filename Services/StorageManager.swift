@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// синглтон
 final class StorageManager {
     
     static let shared = StorageManager()
@@ -20,13 +20,13 @@ final class StorageManager {
     }
     
     func fetchUser() -> User {
-        guard let userData else { return User() }
+        guard let userData else { return User() } // извлекаем опционал
         let user = try? JSONDecoder().decode(User.self, from: userData)
-        guard let user else { return User() }
+        guard let user else { return User() } // извлекаем опционал
         return user
     }
     
-    func clear(userManager: UserManager) {
+    func clear(userManager: UserManager) { // LogOut
         userManager.user.isLoggedIn = false
         userManager.user.name = ""
         userData = nil

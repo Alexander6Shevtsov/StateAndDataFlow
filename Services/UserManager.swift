@@ -7,12 +7,12 @@
 
 import Foundation
 // подписываем чтоб обновлять данные
-final class UserManager: ObservableObject {
+final class UserManager: ObservableObject { // чтоб юзать паблишер
     
-    @Published var user = User()
+    @Published var user = User() // кода нужно отслеживать свойство
     
-    var nameIsValid: Bool {
-        user.name.count >= 3
+    var nameIsValid: Bool { // геттер
+        user.name.count >= 3 // валидация числа в имени
     }
     
     init(user: User = User()) {

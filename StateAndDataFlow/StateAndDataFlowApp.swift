@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct StateAndDataFlow: App {
-    @StateObject private var userManager = UserManager(
+    @StateObject private var userManager = UserManager( // иниц
         user: StorageManager.shared.fetchUser()
     )
     
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environmentObject(userManager)
+                .environmentObject(userManager) // save в окружении проекта
         }
     }
 }

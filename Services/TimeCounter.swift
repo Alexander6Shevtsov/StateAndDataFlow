@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine // обработка асинхронных событий и работа с потоками данных
+import Observation
 
 @Observable final class TimeCounter {
     

@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject private var userManager: UserManager
+    @EnvironmentObject private var userManager: UserManager // достаем save
     
     var body: some View {
         Group { // помещаем в контейнер
-            if userManager.user.isLoggedIn {
+            if userManager.user.isLoggedIn { // отображение стартового экрана
                 ContentView()
             } else {
                 LoginView()
             }
         }
-        .environmentObject(userManager) // и вызываем модификатор save
+        .environmentObject(userManager) // и обратно кладем в окружение
     }
 }
 
