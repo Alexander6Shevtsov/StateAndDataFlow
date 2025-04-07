@@ -23,9 +23,11 @@ struct ButtonAppearanceModifier: ViewModifier {
     }
 }
 
-#Preview {
-    ModifiedContent(
-        content: self,
-        modifier: ButtonAppearanceModifier(color: color)
-    )
+extension View {
+    func buttonAppearance(_ color: Color) -> some View {
+        ModifiedContent(
+            content: self,
+            modifier: ButtonAppearanceModifier(color: color)
+        )
+    }
 }
